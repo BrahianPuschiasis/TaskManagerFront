@@ -13,33 +13,35 @@ const Signup = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Función para obtener el token de administrador
     const fetchAdminToken = async () => {
       const params = new URLSearchParams();
-      params.append('client_id', 'taskManager-backEnd');
-      params.append('client_secret', '**********');
-      params.append('scope', 'openid');
-      params.append('username', 'admin');
-      params.append('password', 'admin');
-      params.append('grant_type', 'password');
+      params.append("client_id", import.meta.env.VITE_CLIENT_ID);
+      params.append("client_secret", import.meta.env.VITE_CLIENT_SECRET);
+      params.append("scope", import.meta.env.VITE_SCOPE);
+      params.append("username", import.meta.env.VITE_ADMIN_USER);
+      params.append("password", import.meta.env.VITE_ADMIN_PASS);
+      params.append("grant_type", import.meta.env.VITE_GRANT_TYPE);
 
       try {
-        const response = await fetch('http://localhost:8080/realms/taskManager/protocol/openid-connect/token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: params,
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_KEYCLOAK_HOST}/realms/taskManager/protocol/openid-connect/token`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: params,
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Error al obtener el token');
+          throw new Error("Error al obtener el token");
         }
 
         const data = await response.json();
         setAdminToken(data.access_token);
       } catch (error) {
-        setError('No se pudo obtener el token de administrador');
+        setError("No se pudo obtener el token de administrador");
       }
     };
 
@@ -49,9 +51,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación básica
     if (!username || !email || !firstName || !lastName || !password) {
-      setError('Todos los campos son obligatorios');
+      setError("Todos los campos son obligatorios");
       return;
     }
 
@@ -64,7 +65,7 @@ const Signup = () => {
       emailVerified: false,
       credentials: [
         {
-          type: 'password',
+          type: "password",
           value: password,
           temporary: false,
         },
@@ -72,26 +73,29 @@ const Signup = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/admin/realms/taskManager/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${adminToken}`,
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_KEYCLOAK_HOST}/admin/realms/taskManager/users`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminToken}`,
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (response.ok) {
-        alert('Usuario registrado exitosamente');
-        navigate('/'); 
-        // Limpiar campos
-        setUsername('');
-        setEmail('');
-        setFirstName('');
-        setLastName('');
-        setPassword('');
+        alert("Usuario registrado exitosamente");
+        navigate("/");
+
+        setUsername("");
+        setEmail("");
+        setFirstName("");
+        setLastName("");
+        setPassword("");
       } else {
-        throw new Error('Error al registrar el usuario');
+        throw new Error("Error al registrar el usuario");
       }
     } catch (error) {
       setError(error.message);

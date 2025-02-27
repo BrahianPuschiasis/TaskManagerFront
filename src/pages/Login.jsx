@@ -13,33 +13,35 @@ function Login() {
     e.preventDefault();
 
     const params = new URLSearchParams();
-    params.append('client_id', 'taskManager-backEnd');
-    params.append('client_secret', '**********');
-    params.append('scope', 'openid');
-    params.append('username', username);
-    params.append('password', password);
-    params.append('grant_type', 'password');
+    params.append("client_id", import.meta.env.VITE_CLIENT_ID);
+    params.append("client_secret", import.meta.env.VITE_CLIENT_SECRET);
+    params.append("scope", import.meta.env.VITE_SCOPE);
+    params.append("username", username);
+    params.append("password", password);
+    params.append("grant_type", import.meta.env.VITE_GRANT_TYPE);
 
     try {
-      const response = await fetch('http://localhost:8080/realms/taskManager/protocol/openid-connect/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: params,
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_KEYCLOAK_HOST}/realms/taskManager/protocol/openid-connect/token`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: params,
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Error al autenticar al usuario');
+        throw new Error("Error al autenticar al usuario");
       }
 
       const data = await response.json();
-      setError('');
-      alert("hola" + username)
-      navigate('/home', { state: { username: username, token: data.access_token } });
-
+      setError("");
+      alert("Hola " + username);
+      navigate("/home", { state: { username: username, token: data.access_token } });
     } catch (err) {
-      setError('Error al autenticar al usuario: ' + err.message);
+      setError("Error al autenticar al usuario: " + err.message);
     }
   };
 
