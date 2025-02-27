@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import './index.css' //es el css principal
+import './index.css' 
 import App from './App.jsx'
 import ReactDOM from 'react-dom/client';
 
