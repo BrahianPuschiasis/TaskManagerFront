@@ -1,0 +1,36 @@
+{
+    "createTask": "Create Task",
+    "editTask": "Edit Task",
+    "title": "Title",
+    "description": "Description",
+    "dueDate": "Due Date",
+    "status": "Status",
+    "pending": "Pending",
+    "completed": "Completed",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "errorFetch": "Error fetching tasks.",
+    "errorDelete": "Error deleting task.",
+    "taskDeleted": "Task deleted successfully.",
+    "deleteConfirmation": "Are you sure you want to delete this task?",
+    "confirmDelete": "Accept",
+    "cancelDelete": "Cancel",
+    "errorUpdate": "Error updating task.",
+    "taskUpdated": "Task updated successfully.",
+    "errorCreate": "Error creating task.",
+    "taskCreated": "Task created successfully.",
+    "noTasks": "No tasks available",
+    "edit": "Edit",
+    "app": {
+        "title": "Welcome to Task Manager"
+      },
+      "task": {
+        "createTask": "Create Task"
+      },
+      "home": {
+        "welcome": "Welcome, {{username}}",
+        "error": "Could not retrieve user information"
+      }
+  }
+  

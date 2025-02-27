@@ -1,0 +1,37 @@
+{
+    "createTask": "Crear Tarea",
+    "editTask": "Editar Tarea",
+    "title": "Título",
+    "description": "Descripción",
+    "dueDate": "Fecha de Vencimiento",
+    "status": "Estado",
+    "pending": "Pendiente",
+    "completed": "Completada",
+    "create": "Crear",
+    "update": "Actualizar",
+    "cancel": "Cancelar",
+    "errorFetch": "Error al obtener las tareas.",
+    "errorDelete": "Error al eliminar la tarea.",
+    "taskDeleted": "Tarea eliminada correctamente.",
+    "deleteConfirmation": "¿Estás seguro de que quieres eliminar esta tarea?",
+    "confirmDelete": "Aceptar",
+    "cancelDelete": "Cancelar",
+    "errorUpdate": "Error al actualizar la tarea.",
+    "taskUpdated": "Tarea actualizada correctamente.",
+    "errorCreate": "Error al crear la tarea.",
+    "taskCreated": "Tarea creada correctamente.",
+    "noTasks": "No hay tareas disponibles",
+    "edit": "Editar",
+    "app": {
+        "title": "Bienvenido al Administrador de Tareas"
+      },
+      "task": {
+        "createTask": "Crear tarea"
+      },
+      "home": {
+        "welcome": "Bienvenido!, {{username}}",
+        "error": "No se pudo obtener la informacion del usuario"
+      }
+      
+  }
+  
